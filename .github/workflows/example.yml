@@ -1,0 +1,41 @@
+name: Example of katana-ci-action usage
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  katana-ci-example:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Startup Katana CI instance
+      id: katanaci
+      uses: ArkProjectNFTs/katana-ci-action@v1
+      with:
+        api-url: ${{ secrets.KATANA_CI_URL }}
+        api-key: ${{ secrets.KATANA_CI_KEY }}
+        cmd: 'start'
+
+    - name: Cache cargo dependencies
+      uses: Swatinem/rust-cache@v2
+
+    - name: Run cargo test
+      uses: actions-rs/cargo@v1
+      env:
+        STARKNET_RPC: ${{ steps.katanaci.outputs.katana-rpc }}
+      with:
+        command: run
+        args: --example e2e
+
+    - name: Terminate Katana CI instance
+      uses: ArkProjectNFTs/katana-ci-action@v1
+      with:
+        api-url: ${{ secrets.KATANA_CI_URL }}
+        api-key: ${{ secrets.KATANA_CI_KEY }}
+        cmd: 'stop'
+        name: ${{ steps.katanaci.outputs.katana-name }}

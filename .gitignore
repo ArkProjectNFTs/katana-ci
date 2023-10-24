@@ -1,1 +1,4 @@
 /target
+.env
+.users
+data.db
