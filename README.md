@@ -15,9 +15,12 @@ The database trait `ProxifierDb` is for now targetting `Sqlite`, but may be rewo
 
 To quickly spin up `katana-ci` server, you can do the following:
 
-0. Install docker on your machine.
-1. Download the binary from the release here: https://github.com/ArkProjectNFTs/katana-ci/releases/tag/v0.1.0 (or build from source).
-2. Add execution rights on the binary `chmod +x katana-ci`
+1. Install docker on your machine, for example: `snap install docker`.
+2. Download the binary from the [release](https://github.com/ArkProjectNFTs/katana-ci/releases/tag/v0.1.0) (or build from source)
+   ```bash
+   wget -q -O katana-ci https://github.com/ArkProjectNFTs/katana-ci/releases/download/v0.1.0/katana-ci_amd64
+   chmod +x katana-ci
+   ```
 3. Pull the docker image of katana (or use your own):
    ```bash
    docker pull arkproject/katana:0.3.1
