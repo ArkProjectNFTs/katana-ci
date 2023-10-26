@@ -53,6 +53,8 @@ To quickly spin up `katana-ci` server, you can do the following:
 To setup your action in the GitHub CI, you can check the full example in `.github/workflows/example.yml`, and you also have a test in `examples/e2e.rs` with
 all basic actions on a contract with `starknet-rs` -> declare, deploy (which is an invoke with the UDC), call.
 
+You can use the [katana-ci-action](https://github.com/ArkProjectNFTs/katana-ci-action) to abstract the call to the `katana-ci` server.
+
 Basically, you call the action first to start the katana:
 ```yml
     - name: Startup Katana CI instance
